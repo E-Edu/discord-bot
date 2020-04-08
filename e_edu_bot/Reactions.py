@@ -64,7 +64,7 @@ async def handle_request_group_emoji(client, payload: discord.raw_models.RawReac
     channel = client.get_channel(int(channel_id))
     client.edu_config.save_user_context(str(payload.member), payload.user_id)
     m = await channel.send(str(
-        user) + " möchte dem Team beitreten! \n Warnung! Wenn der Emoji von der nachricht entfernt wird, behält der Nutzer weiterhin die Rolle")
+        user) + " möchte dem Team beitreten!")
 
     for i in ["✅", "❌"]:
         await m.add_reaction(i)
