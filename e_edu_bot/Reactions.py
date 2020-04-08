@@ -28,8 +28,8 @@ async def handle_bool_emoji(client, payload: discord.raw_models.RawReactionActio
         await message.delete()
 
         await client.get_channel(payload.channel_id).send(
-            "Der Nutzer " + username + "wurde aufgrund der Entscheidung von " + str(
-                permitted_user) + "nicht zur Gruppe hinzugefügt")
+            "Der Nutzer " + username + " wurde aufgrund der Entscheidung von " + str(
+                permitted_user) + " nicht zur Gruppe hinzugefügt")
         await client.get_guild(payload.guild_id).get_member(client.edu_config.user_id_dic[str(username)]).send(
             "Du wurdest aufgrund der Entscheidung von " + str(
                 permitted_user) + ' nicht zur Gruppe "' + role_name + '" hinzugefügt')
@@ -63,7 +63,7 @@ async def handle_request_group_emoji(client, payload: discord.raw_models.RawReac
 
     channel = client.get_channel(int(channel_id))
     client.edu_config.save_user_context(str(payload.member), payload.user_id)
-    m = await channel.send(str(
+    m = await channel.send("@" + str(
         user) + " möchte dem Team beitreten! \n Warnung! Wenn der Emoji von der nachricht entfernt wird, behält der Nutzer weiterhin die Rolle")
 
     for i in ["✅", "❌"]:
