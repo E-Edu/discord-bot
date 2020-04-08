@@ -20,14 +20,13 @@ class EEduBot(discord.Client):
             return
 
         if message.content.startswith("."):
-            if message.content.startswith(".help"):
+            if message.content.startswith(".!help"):
                 await command_help(self, message)
             elif message.content.startswith(".admin"):
                 await handle_admin_command(self, message)
-
             else:
                 await message.channel.send(
-                    f"{message.author.mention} Befehl nicht gefunden!")
+                    f"{message.author.mention} Befehl nicht gefunden! \n .!help für mehr Informationen")
 
     async def on_raw_reaction_add(self, payload):
         if payload.member == self.user:
@@ -40,6 +39,6 @@ class EEduBot(discord.Client):
 
     def reset_cooldown(self):
         while True:
-            time.sleep(300)
+            time.sleep(5)
             self.edu_config.timeout_list = []
 

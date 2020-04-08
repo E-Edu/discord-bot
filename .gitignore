@@ -207,3 +207,12 @@ dmypy.json
 .history
 
 # End of https://www.gitignore.io/api/python,intellij,visualstudiocode
+.idea/vcs.xml
+.idea/discord-bot.iml
+.idea/misc.xml
+.idea/modules.xml
+./config
+.config/
+config
+config/config.json
+config/user_id.json

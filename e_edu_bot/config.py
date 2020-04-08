@@ -4,7 +4,8 @@ import os
 
 class Config:
     config_file_path = "./config/config.json"
-
+    user_id_file_path = "./config/user_id.json"
+    config_folder_path = "./config"
     admin_client = None
     request_permission_message = None
 
@@ -13,7 +14,7 @@ class Config:
     user_bot_channel = None
     report_bot_channel = None
     task_bot_channel = None
-
+    design_bot_channel = None
     timeout_list = []
 
     ms_channel_list = []
@@ -26,7 +27,8 @@ class Config:
         "interface_bot_channel": "",
         "user_bot_channel": "",
         "report_bot_channel": "",
-        "task_bot_channel": ""
+        "task_bot_channel": "",
+        "design_bot_channel":""
     }
 
     permission_name_list = {}
@@ -36,8 +38,8 @@ class Config:
         self.read_user_dict_file()
 
     def read_config(self):
-        if os.path.exists('./config/config.json'):
-            with open("./config/config.json", 'r') as f:
+        if os.path.exists(self.config_file_path):
+            with open(self.config_file_path, 'r') as f:
                 data = f.read()
             json_data = json.loads(data)
 
@@ -48,8 +50,9 @@ class Config:
             self.user_bot_channel = json_data["user_bot_channel"]
             self.report_bot_channel = json_data["report_bot_channel"]
             self.task_bot_channel = json_data["task_bot_channel"]
-
             self.request_permission_message = json_data["request_permission_message"]
+            self.design_bot_channel = json_data["design_bot_channel"]
+
             self.update_channel_list()
         else:
             self.create_default_config_file()
@@ -60,39 +63,40 @@ class Config:
             self.interface_bot_channel,
             self.user_bot_channel,
             self.report_bot_channel,
-            self.task_bot_channel
-
+            self.task_bot_channel,
+            self.design_bot_channel
         ]
         for i in [
             [self.frontend_bot_channel, "Frontend"],
             [self.interface_bot_channel, "Schnittstellen"],
             [self.user_bot_channel, "USER MS"],
             [self.report_bot_channel, "REPORT MS"],
-            [self.task_bot_channel, "TASK MS"]]:
+            [self.task_bot_channel, "TASK MS"],
+            [self.design_bot_channel, "Design"]]:
             self.permission_name_list[i[0]] = i[1]
 
     def create_default_config_file(self):
-        if not os.path.exists("./config/"):
-            os.mkdir('./config')
-        if not os.path.exists('./config/config.json'):
-            with open('./config/config.json', 'w') as f:
+        if not os.path.exists(self.config_folder_path):
+            os.mkdir(self.config_folder_path)
+        if not os.path.exists(self.config_file_path):
+            with open(self.config_file_path, 'w') as f:
                 json.dump(self.defaultConfig, f)
                 f.flush()
                 f.close()
-        if not os.path.exists('./config/user_id.json'):
-            with open('./config/user_id.json', 'w') as f:
+        if not os.path.exists(self.user_id_file_path):
+            with open(self.user_id_file_path, 'w') as f:
                 json.dump({}, f)
                 f.flush()
                 f.close()
 
     def update_value(self, param, value):
-        with open("./config/config.json", 'r') as f:
+        with open(self.config_file_path, 'r') as f:
             data = f.read()
             f.close()
         json_data = json.loads(data)
         json_data[param] = value
 
-        with open('./config/config.json', 'w') as f:
+        with open(self.config_file_path, 'w') as f:
             json.dump(json_data, f)
 
         self.read_config()
@@ -100,13 +104,13 @@ class Config:
 
     def save_user_context(self, user_name, user_id):
         self.user_id_dic[user_name] = user_id
-        with open('./config/user_id.json', 'w') as f:
+        with open(self.user_id_file_path, 'w') as f:
             json.dump(self.user_id_dic, f)
 
     def read_user_dict_file(self):
-        if not os.path.exists('./config/user_id.json'):
+        if not os.path.exists(self.user_id_file_path):
             self.create_default_config_file()
-        with open("./config/user_id.json", 'r') as f:
+        with open(self.user_id_file_path, 'r') as f:
             data = f.read()
             f.close()
         json_data = json.loads(data)
@@ -115,5 +119,5 @@ class Config:
     def remove_user_dict_key(self, key):
         json_data = self.user_id_dic
         json_data.pop(key)
-        with open('./config/user_id.json', 'w') as f:
+        with open(self.user_id_file_path, 'w') as f:
             json.dump(json_data, f)
