@@ -44,22 +44,23 @@ async def handle_admin_command(client, message: discord.message.Message):
         return
     if full_message[1] == "register_welcome_channel":
         await send_welcome_message_id(client, message)
-
     elif full_message[1] == "register_frontend_bot_channel":
         client.edu_config.update_value("frontend_bot_channel", str(message.channel.id))
-
+        await message.add_reaction('👍')
     elif full_message[1] == "register_interface_bot_channel":
         client.edu_config.update_value("interface_bot_channel", str(message.channel.id))
-
+        await message.add_reaction('👍')
     elif full_message[1] == "register_user_bot_channel":
         client.edu_config.update_value("user_bot_channel", str(message.channel.id))
-
+        await message.add_reaction('👍')
     elif full_message[1] == "register_report_bot_channel":
         client.edu_config.update_value("report_bot_channel", str(message.channel.id))
-
+        await message.add_reaction('👍')
     elif full_message[1] == "register_task_bot_channel":
         client.edu_config.update_value("task_bot_channel", str(message.channel.id))
+        await message.add_reaction('👍')
     elif full_message[1] == "register_design_bot_channel":
         client.edu_config.update_value("design_bot_channel", str(message.channel.id))
+        await message.add_reaction('👍')
     else:
         return

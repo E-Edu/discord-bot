@@ -55,15 +55,15 @@ async def handle_request_group_emoji(client, payload: discord.raw_models.RawReac
     elif str(payload.emoji) == '6️⃣':
         channel_id = client.edu_config.design_bot_channel
     elif str(payload.emoji) == '7️⃣':
-        await client.get_guild(payload.guild_id).get_member(payload.user_id).add_roles(
-            discord.utils.get(payload.member.guild.roles, name="Watcher"))
+        role = discord.utils.get(payload.member.guild.roles, name="Watcher")
+        await client.get_guild(payload.guild_id).get_member(payload.user_id).add_roles(role)
         return
     else:
         return
 
     channel = client.get_channel(int(channel_id))
     client.edu_config.save_user_context(str(payload.member), payload.user_id)
-    m = await channel.send("@" + str(
+    m = await channel.send(str(
         user) + " möchte dem Team beitreten! \n Warnung! Wenn der Emoji von der nachricht entfernt wird, behält der Nutzer weiterhin die Rolle")
 
     for i in ["✅", "❌"]:

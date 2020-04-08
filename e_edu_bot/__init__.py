@@ -39,6 +39,6 @@ class EEduBot(discord.Client):
 
     def reset_cooldown(self):
         while True:
-            time.sleep(5)
+            time.sleep(300)
             self.edu_config.timeout_list = []
 
