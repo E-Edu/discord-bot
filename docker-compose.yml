@@ -1,3 +1,7 @@
-# Please fill out with content
+version: '3'
 
-version: '3.7'
+services:
+  e_edu_bot:
+    image: #Image Name / Path
+    restart: unless-stopped
+    container_name: e_edu_bot
