@@ -5,7 +5,7 @@ View **[Dockerfile](https://github.com/E-Edu/discord-bot/blob/master/Dockerfile)
 
 ## Docker image tags
 
-* **Image name:** `eedu/reportms`
+* **Image name:** `eedu/discord`
 
 
 ## Environment Variables
