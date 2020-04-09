@@ -14,7 +14,7 @@ View **[Dockerfile](https://github.com/E-Edu/discord-bot/blob/master/Dockerfile)
 |------------------|----------|-----------| ------------|
 | `DISCORD_TOKEN` |Yes|  | / |
 
-##available commands
+## available commands
 
 .admin [params]
 
