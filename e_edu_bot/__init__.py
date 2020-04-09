@@ -1,7 +1,7 @@
 import time
 
-from .Commands import *
-from .Reactions import *
+from .commands import *
+from .reactions import *
 from .config import Config
 
 

@@ -9,8 +9,6 @@ async def command_help(client, message: discord.message.Message):
 
 
 async def send_welcome_message_id(client, message):
-    text_channel = client.get_channel('1234567890')
-
     msg = """
 Hey! Willkommen auf dem E-Edu-Server :slight_smile:
 Hier gibt es Verschiedene Aufgabengebiete. 

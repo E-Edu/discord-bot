@@ -1,5 +1,5 @@
 
-# Python Flask Report Microservice
+# Python Discord Bot
 
 View **[Dockerfile](https://github.com/E-Edu/discord-bot/blob/master/Dockerfile)** on GitHub.
 
