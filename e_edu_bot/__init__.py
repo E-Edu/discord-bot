@@ -1,12 +1,13 @@
 import time
 
 from .Commands import *
-from .config import Config
 from .Reactions import *
+from .config import Config
 
 
 class EEduBot(discord.Client):
     edu_config = None
+    user_countdown = 500
 
     def __init__(self, **options):
         self.edu_config = Config()
@@ -31,14 +32,14 @@ class EEduBot(discord.Client):
     async def on_raw_reaction_add(self, payload):
         if payload.member == self.user:
             return
+
         if str(payload.message_id) == str(self.edu_config.request_permission_message):
             await handle_request_group_emoji(self, payload)
 
-        elif str(payload.channel_id) in self.edu_config.ms_channel_list:
+        elif str(payload.channel_id) in self.edu_config.permission_name_list.keys():
             await handle_bool_emoji(self, payload)
 
     def reset_cooldown(self):
         while True:
-            time.sleep(300)
+            time.sleep(self.user_countdown)
             self.edu_config.timeout_list = []
-

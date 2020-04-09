@@ -2,6 +2,10 @@ version: '3'
 
 services:
   e_edu_bot:
-    image: #Image Name / Path
+    image: eedu/discord-bot
+    environment:
+      - DISCORD_TOKEN= # Need to be replaced with token
+    volumes:
+      - /var/data/config/:/Discord/config
     restart: unless-stopped
     container_name: e_edu_bot

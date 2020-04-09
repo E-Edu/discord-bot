@@ -5,7 +5,7 @@ View **[Dockerfile](https://github.com/E-Edu/discord-bot/blob/master/Dockerfile)
 
 ## Docker image tags
 
-* **Image name:** `eedu/discord`
+* **Image name:** `eedu/discord-bot`
 
 
 ## Environment Variables
@@ -36,7 +36,7 @@ View **[Dockerfile](https://github.com/E-Edu/discord-bot/blob/master/Dockerfile)
 ```bash
 docker run \
   -e DISCORD_TOKEN='' \
-  eedu/discord
+  eedu/discord-bot
 ```
 
 ### Run with docker-compose
