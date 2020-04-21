@@ -5,7 +5,7 @@ allowed_roles = []
 
 async def command_help(client, message: discord.message.Message):
     # Todo New Help
-    await message.channel.send("Für die Rolle Watcher tippe .+ Watcher #frontend")
+    await message.channel.send("Für die Rolle Watcher klicke die 7")
 
 
 async def send_welcome_message_id(client, message):
@@ -17,6 +17,7 @@ Im #infos Channel findest du mehr Infos zu allen Bereichen.
 Wenn du dich entschieden hast wo du gerne mal 
 reinschauen oder gar mitmachen möchtest dann 
 klicke bitte eine der folgenden Zahlen an :slight_smile:
+Es wird durch anklicken einer Zahl, eine Anfrage an die Heads des jeweiligen Bereichs gesendet.
 
 1 » Frontend
 2 » Schnittstellen
