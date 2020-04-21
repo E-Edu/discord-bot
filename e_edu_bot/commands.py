@@ -5,7 +5,7 @@ allowed_roles = []
 
 async def command_help(client, message: discord.message.Message):
     # Todo New Help
-    await message.channel.send("Für die Rolle Watcher tippe .+ Watcher #frontend")
+    await message.channel.send("Für die Rolle Watcher tippe .+ Watcher")
 
 
 async def send_welcome_message_id(client, message):
