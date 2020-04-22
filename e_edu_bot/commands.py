@@ -28,7 +28,6 @@ Es wird durch anklicken einer Zahl, eine Anfrage an die Heads des jeweiligen Ber
 """
 
     a = await message.channel.send(msg)
-‚
     for i in ["1️⃣", '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '👀']:
         await a.add_reaction(i)
     client.edu_config.update_value("request_permission_message", str(a.id))
