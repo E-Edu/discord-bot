@@ -4,7 +4,7 @@ allowed_roles = []
 
 
 async def command_help(client, message: discord.message.Message):
-    await message.channel.send("Beep Beep Boop")
+    await message.channel.send("Für die Rolle Watcher klicke auf die 👀!")
 
 
 async def send_welcome_message_id(client, message):
@@ -16,6 +16,7 @@ Im #infos Channel findest du mehr Infos zu allen Bereichen.
 Wenn du dich entschieden hast wo du gerne mal 
 reinschauen oder gar mitmachen möchtest dann 
 klicke bitte eine der folgenden Zahlen / Emojis an :slight_smile:
+Es wird durch anklicken einer Zahl, eine Anfrage an die Heads des jeweiligen Bereichs gesendet.
 
 1 » Frontend
 2 » Schnittstellen
@@ -67,10 +68,8 @@ async def handle_admin_command(client, message: discord.message.Message):
         client.edu_config.admin_client_list.append(int(admin_id))
         client.edu_config.update_value("admin_client_list",client.edu_config.admin_client_list)
         await message.add_reaction('👍')
-    
-    
     else:
-        return
+        await message.add_reaction('❓')
 
 
 async def handle_role_remove_command(client, message):
