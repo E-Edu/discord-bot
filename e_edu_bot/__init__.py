@@ -25,9 +25,13 @@ class EEduBot(discord.Client):
                 await command_help(self, message)
             elif message.content.startswith(".admin"):
                 await handle_admin_command(self, message)
+            elif message.content.startswith(".-"):
+                await handle_role_remove_command(self, message)
+            elif message.content.startswith(".!ping"):
+                await message.channel.send(f"{message.author.mention} Beep! Beep! Beep!")
             else:
                 await message.channel.send(
-                    f"{message.author.mention} Befehl nicht gefunden! \n .!help für mehr Informationen")
+                    f"{message.author.mention} Befehl nicht gefunden!")
 
     async def on_raw_reaction_add(self, payload):
         if payload.member == self.user:
