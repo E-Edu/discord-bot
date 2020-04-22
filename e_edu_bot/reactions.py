@@ -3,7 +3,8 @@ import discord
 
 async def handle_bool_emoji(client, payload: discord.raw_models.RawReactionActionEvent):
     if str(payload.emoji) == "✅":
-        role_name = client.edu_config.permission_name_list[str(payload.channel_id)]
+        role_name = client.edu_config.permission_name_list[str(
+            payload.channel_id)]
         role = discord.utils.get(payload.member.guild.roles, name=role_name)
 
         channel = client.get_channel(payload.channel_id)
@@ -20,11 +21,13 @@ async def handle_bool_emoji(client, payload: discord.raw_models.RawReactionActio
         await channel.send("Der User " + str(username) + " wurde von " + str(
             permitted_user) + " zur Gruppe " + role_name + " hinzugefügt")
     elif str(payload.emoji) == "❌":
-        role_name = client.edu_config.permission_name_list[str(payload.channel_id)]
+        role_name = client.edu_config.permission_name_list[str(
+            payload.channel_id)]
         channel = client.get_channel(payload.channel_id)
         message = await channel.fetch_message(payload.message_id)
         username = message.content.split(" ")[0]
-        permitted_user = client.get_guild(payload.guild_id).get_member(payload.user_id)
+        permitted_user = client.get_guild(
+            payload.guild_id).get_member(payload.user_id)
         await message.delete()
 
         await client.get_channel(payload.channel_id).send(
@@ -54,7 +57,7 @@ async def handle_request_group_emoji(client, payload: discord.raw_models.RawReac
         channel_id = client.edu_config.user_bot_channel
     elif str(payload.emoji) == '6️⃣':
         channel_id = client.edu_config.design_bot_channel
-    elif str(payload.emoji) == '7️⃣':
+    elif str(payload.emoji) == '👀':
         role = discord.utils.get(payload.member.guild.roles, name="Watcher")
         await client.get_guild(payload.guild_id).get_member(payload.user_id).add_roles(role)
         return
@@ -63,8 +66,8 @@ async def handle_request_group_emoji(client, payload: discord.raw_models.RawReac
 
     channel = client.get_channel(int(channel_id))
     client.edu_config.save_user_context(str(payload.member), payload.user_id)
-    m = await channel.send(str(
-        user) + " möchte dem Team beitreten!")
+    m = await channel.send(
+        f"{user} möchte dem Team beitreten!")
 
     for i in ["✅", "❌"]:
         await m.add_reaction(i)
