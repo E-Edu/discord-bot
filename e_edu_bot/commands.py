@@ -84,6 +84,10 @@ async def handle_admin_command(client, message: discord.message.Message):
         client.edu_config.update_value(
             "admin_client_list", client.edu_config.admin_client_list)
         await message.add_reaction('👍')
+
+    elif full_message[1] == "get_owner_info":
+        await message.author.send(str(await client.application_info()))
+        await message.add_reaction('👍')
     else:
         await message.add_reaction('❓')
 
